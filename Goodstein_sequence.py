@@ -18,12 +18,21 @@ def base_converter(number,base,answer):
 #x=base_converter(54532,3,[]) These two lines are bebuging lines.
 #print x
 
-
+def base_converter_medium(number,base):
+	numb_base=[]
+	
+	while number>0:
+		#print number
+		numb_base.insert(0,(number%base))
+		#print numb_base
+		number=number/base
+		#print number
+	return numb_base
 
 #This function takes a number in base 10 and creates it's base notation in a new base. Output is a dictionary
 def regular_to_base(number,base):
 	#Converts the number to the list. 
-	base_number=base_converter(number,base,[])
+	base_number=base_converter_medium(number,base)
 	#Intializes the output
 	base_num={'coeffecient':[],'base':[],'exponents':[]}
 	#Coeffecients of the base notation number is equal to the output of the function.
@@ -66,6 +75,7 @@ def base_to_regular(base_num):
 def goodstein_number(number,base):
 	#Get's the number in base notation
 	base_note=regular_to_base(number,base)
+	#print base_note
 	#This loop  is a doozy. If first checks to see if it's in Hereditary Base notation.
 	#If it is then it increments the sequence by one, computes and outputs. If it's not, it recall's this function
 	#on the exponents that aren't in the lowers form.
@@ -87,7 +97,7 @@ def goodstein_number(number,base):
 input_number=int(raw_input("What number would you like to start with?\n"))
 #prints out a sequence of goodstein numbers
 def goodstein_sequence(number):
-	iterations=10
+	iterations=100
 	base=2
 	goodstein=number
 	print number
